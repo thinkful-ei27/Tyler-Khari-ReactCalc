@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function DisplayWindow(props){
+export default function Display(props){
  return (
-     <h1>{props.total}</h1>
+    <h1>{props.text}</h1>
  )
 
 }
