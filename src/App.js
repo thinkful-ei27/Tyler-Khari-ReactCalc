@@ -1,7 +1,7 @@
 import React from 'react';
 import NumButton from './button';
-import DisplayWindow from './display'
-import ClearButton from './clear'
+import DisplayWindow from './display';
+import ClearButton from './clear';
 import EqualButton from './equalbutton';
 import OpButton from './opButton';
 
@@ -12,24 +12,28 @@ state = {
     display:'',
     operation: '',
     firstVal: 0,
-    secondVal: 0
-
+    total: ''
 }
 
 handleAdd(numVal){
     this.setState({display: this.state.display + numVal.toString()})
 }
 handleClear(e){
-    this.setState({display: '', operation:'', firstVal:0})
+    this.setState({display: '', operation:'', firstVal:0,})
 }
 
 handleOppclick(op){
-    this.setState({operation: op, firstVal: Number(this.state.display), display: ''})
+    this.setState({operation: op, firstVal: this.state.display, display: ''})
 }
 
 handleEqualClick(e){
-    this.setState({secondVal: Number(this.state.display)})
+
+    const secondValue = this.state.display;
+    let answer = this.state.firstVal.concat(this.state.operation).concat(secondValue)
+    this.setState({display: eval(answer).toString()});
+    
 }
+
 
 render(){
     return( 
@@ -51,7 +55,7 @@ render(){
             <OpButton  onOp={op => this.handleOppclick(op)}op= {'-'}/>
             <OpButton  onOp={op => this.handleOppclick(op)}op={'*'}/>
             <OpButton  onOp={op => this.handleOppclick(op)}op= {'/'}/>
-            </div>
+        </div>
     )
 }
 
